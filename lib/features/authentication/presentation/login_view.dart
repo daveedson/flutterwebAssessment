@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:new_web_assesment/app_theme/app_colors.dart';
 import 'package:new_web_assesment/app_theme/app_text_styles.dart';
@@ -23,7 +24,7 @@ class LoginScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                gapH12,
+                gapH20,
                 Text(
                   "Lets login into your account",
                   style: AppTextStyles.paragraph01Regular,
@@ -32,19 +33,22 @@ class LoginScreen extends ConsumerWidget {
                 Text(
                   "EmailAddress",
                   style: AppTextStyles.paragraph03Medium,
-                ),
+                ).animate()
+                    .slideX(begin: 1.0, end: 0.0, curve: Curves.easeIn,duration: const Duration(seconds: 1)),
                 gapH8,
                 PrimaryTextField(
                     hint: "jane@email.com",
                     controller: TextEditingController(),
                     validator: emailValidator,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    onChanged: (value) {}),
+                    onChanged: (value) {}).animate()
+                    .slideX(begin: 1.0, end: 0.0, curve: Curves.easeIn,duration: const Duration(seconds: 1)),
                 gapH8,
                 Text(
                   "Password",
                   style: AppTextStyles.paragraph03Medium,
-                ),
+                ).animate()
+                    .slideX(begin: 1.0, end: 0.0, curve: Curves.easeIn,duration: const Duration(seconds: 1)),
                 gapH8,
                 PrimaryTextField(
                   hint: "**********",
@@ -56,7 +60,8 @@ class LoginScreen extends ConsumerWidget {
                           Icon(Icons.remove_red_eye, color: Color(0xff616161))),
                   validator: normalPasswordValidator,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                ),
+                ).animate()
+                    .slideX(begin: 1.0, end: 0.0, curve: Curves.easeIn,duration: const Duration(seconds: 1)),
                 gapH4,
                 RichText(
                   text: TextSpan(
@@ -90,7 +95,8 @@ class LoginScreen extends ConsumerWidget {
                             .copyWith(color: Colors.white)),
                     buttonBorderRadius: 8.0,
                   ),
-                ),
+                ) .animate()
+                    .slideX(begin: -1.0, end: 0.0, curve: Curves.easeIn,duration: const Duration(seconds: 1)),
                 gapH8,
                 Align(
                   alignment: Alignment.bottomCenter,
