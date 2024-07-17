@@ -1,149 +1,112 @@
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:new_web_assesment/app_theme/app_colors.dart';
 import 'package:new_web_assesment/app_theme/app_text_styles.dart';
 import 'package:new_web_assesment/common_widgets/primary_button.dart';
+import 'package:new_web_assesment/common_widgets/primary_textfield.dart';
 import 'package:new_web_assesment/constants/app_sizes.dart';
+import 'package:new_web_assesment/utils/validators.dart';
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final loginController = ref.read(loginControllerProvider);
-    final user = ref.watch(userProvider);
-    final loginControllerNotifier = ref.read(loginControllerProvider.notifier);
-    ref.listen<LoginState>(loginControllerProvider,
-        (_, state) => state.asyncValue.showSnackBarOnError(context));
-    final locale = AppLocalizations.of(context)!;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Padding(
         padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 60.0),
         child: SingleChildScrollView(
           child: Form(
-            key: loginController.loginformKey,
+            // key: loginController.loginformKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                verticalSpaceMassive,
+                gapH12,
                 Text(
-                  "Welcome ${user?.data!.customerData?.firstName ?? ""}",
-                  style: AppTextStyles.heading04Bold,
-                ),
-                verticalSpaceSmall,
-                Text(
-                  locale.letslogintoyouraccount,
+                  "Lets login into your account",
                   style: AppTextStyles.paragraph01Regular,
                 ),
-                gapH8,
+                gapH16,
                 Text(
-                  locale.emailAddress,
+                  "EmailAddress",
                   style: AppTextStyles.paragraph03Medium,
                 ),
-                verticalSpaceSmall,
+                gapH8,
                 PrimaryTextField(
-                  hint: "jane@email.com",
-                  controller: loginController.emailController,
-                  validator: emailValidator,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  onChanged: (value) => ref
-                      .watch(onBoardingWithEmailControllerProvider.notifier)
-                      .changeEmailFormCompleteToTrue(value!),
-                ),
+                    hint: "jane@email.com",
+                    controller: TextEditingController(),
+                    validator: emailValidator,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    onChanged: (value) {}),
                 gapH8,
                 Text(
-                  locale.password,
+                  "Password",
                   style: AppTextStyles.paragraph03Medium,
                 ),
-                verticalSpaceSmall,
+                gapH8,
                 PrimaryTextField(
                   hint: "**********",
-                  controller: loginController.passwordController,
-                  obscure: ref.watch(loginControllerProvider).obscurePassword,
+                  controller: TextEditingController(),
+                  obscure: false,
                   suffixIcon: IconButton(
-                      onPressed: () {
-                        ref
-                            .read(loginControllerProvider.notifier)
-                            .showPassword();
-                      },
-                      icon: loginController.obscurePassword
-                          ? Icon(CustomIcons.eye_slash, color: Color(0xff616161))
-                          : Icon(Icons.remove_red_eye,
-                              color: Color(0xff616161))),
+                      onPressed: () {},
+                      icon:
+                          Icon(Icons.remove_red_eye, color: Color(0xff616161))),
                   validator: normalPasswordValidator,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
                 gapH4,
                 RichText(
                   text: TextSpan(
-                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    style: const TextStyle(color: Colors.black, fontSize: 16),
                     children: [
                       TextSpan(
-                          text: locale.forgotpassword,
+                          text: "Forgot password",
                           style: AppTextStyles.paragraph02Regular),
                       TextSpan(
-                          text: locale.reset,
+                          text: " Reset",
                           style: AppTextStyles.paragraph02Bold
                               .copyWith(color: PrimaryColorsOne.primaryOne600),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              context.pushNamed(AppRoute.resetPassword.name);
-                            }
+                          recognizer: TapGestureRecognizer()..onTap = () {}
                           // You can add onTap callback here to handle sign-in action
                           ),
                     ],
                   ),
                 ),
-                gapH8,
-                PrimaryButton(
-                  onPressed: ref
-                          .watch(onBoardingWithEmailControllerProvider)
-                          .emailFormComplete
-                      ? () async {
-                          if (loginController.loginformKey.currentState!
-                              .validate()) {
-                            loginControllerNotifier.sigIn(LoginRequestModel(
-                              username:
-                                  loginController.emailController.text.trim(),
-                              password: loginController.passwordController.text
-                                  .trim(),
-                            ));
-                          }
-                        }
-                      : null,
-                  isLoading:
-                      ref.watch(loginControllerProvider).asyncValue.isLoading,
-                  backgroundColor: PrimaryColorsOne.primaryOne600,
-                  foregroundColor: Colors.grey,
-                  buttonHeight: 52.0,
-                  buttonChild: Text(locale.login,
-                      style: AppTextStyles.paragraph03Medium
-                          .copyWith(color: Colors.white)),
-                  buttonBorderRadius: 8.0,
+                gapH16,
+                Align(
+                  alignment: Alignment.center,
+                  child: PrimaryButton(
+                    onPressed: () {},
+                    isLoading: false,
+                    backgroundColor: PrimaryColorsOne.primaryOne600,
+                    foregroundColor: Colors.grey,
+                    buttonHeight: 52.0,
+                    buttonWidth: MediaQuery.of(context).size.width / 2,
+                    buttonChild: Text("Login",
+                        style: AppTextStyles.paragraph03Medium
+                            .copyWith(color: Colors.white)),
+                    buttonBorderRadius: 8.0,
+                  ),
                 ),
                 gapH8,
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: RichText(
                     text: TextSpan(
-                      style: TextStyle(color: Colors.black, fontSize: 16),
+                      style: const TextStyle(color: Colors.black, fontSize: 16),
                       children: [
                         TextSpan(
-                            text: locale.donthaveanaccount,
+                            text: "Don't have an account?",
                             style: AppTextStyles.paragraph02Regular),
                         TextSpan(
-                            text: locale.signup,
+                            text: " Sign up",
                             style: AppTextStyles.paragraph02Bold.copyWith(
                               color: PrimaryColorsOne.primaryOne600,
                             ),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                context.pushNamed(AppRoute.getStarted.name);
-                              }),
+                            recognizer: TapGestureRecognizer()..onTap = () {}),
                       ],
                     ),
                   ),
