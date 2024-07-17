@@ -7,6 +7,7 @@ import 'package:new_web_assesment/app_theme/app_text_styles.dart';
 import 'package:new_web_assesment/common_widgets/primary_button.dart';
 import 'package:new_web_assesment/common_widgets/primary_textfield.dart';
 import 'package:new_web_assesment/constants/app_sizes.dart';
+import 'package:new_web_assesment/features/authentication/presentation/login_view_model.dart';
 import 'package:new_web_assesment/utils/validators.dart';
 
 class LoginScreen extends ConsumerWidget {
@@ -14,13 +15,15 @@ class LoginScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(loginViewModelProvider);
+    final controller = ref.read(loginViewModelProvider.notifier);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Padding(
         padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 60.0),
         child: SingleChildScrollView(
           child: Form(
-            // key: loginController.loginformKey,
+            key: ref.read(loginViewModelProvider.notifier).formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -33,35 +36,53 @@ class LoginScreen extends ConsumerWidget {
                 Text(
                   "EmailAddress",
                   style: AppTextStyles.paragraph03Medium,
-                ).animate()
-                    .slideX(begin: 1.0, end: 0.0, curve: Curves.easeIn,duration: const Duration(seconds: 1)),
+                ).animate().slideX(
+                    begin: 1.0,
+                    end: 0.0,
+                    curve: Curves.easeIn,
+                    duration: const Duration(seconds: 1)),
                 gapH8,
                 PrimaryTextField(
-                    hint: "jane@email.com",
-                    controller: TextEditingController(),
-                    validator: emailValidator,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    onChanged: (value) {}).animate()
-                    .slideX(begin: 1.0, end: 0.0, curve: Curves.easeIn,duration: const Duration(seconds: 1)),
+                        hint: "jane@email.com",
+                        controller: ref
+                            .read(loginViewModelProvider.notifier)
+                            .emailController,
+                        validator: emailValidator,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        onChanged: (value) {})
+                    .animate()
+                    .slideX(
+                        begin: 1.0,
+                        end: 0.0,
+                        curve: Curves.easeIn,
+                        duration: const Duration(seconds: 1)),
                 gapH8,
                 Text(
                   "Password",
                   style: AppTextStyles.paragraph03Medium,
-                ).animate()
-                    .slideX(begin: 1.0, end: 0.0, curve: Curves.easeIn,duration: const Duration(seconds: 1)),
+                ).animate().slideX(
+                    begin: 1.0,
+                    end: 0.0,
+                    curve: Curves.easeIn,
+                    duration: const Duration(seconds: 1)),
                 gapH8,
                 PrimaryTextField(
                   hint: "**********",
-                  controller: TextEditingController(),
-                  obscure: false,
+                  controller: ref
+                      .read(loginViewModelProvider.notifier)
+                      .passwordController,
+                  obscure: true,
                   suffixIcon: IconButton(
                       onPressed: () {},
                       icon:
                           Icon(Icons.remove_red_eye, color: Color(0xff616161))),
                   validator: normalPasswordValidator,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                ).animate()
-                    .slideX(begin: 1.0, end: 0.0, curve: Curves.easeIn,duration: const Duration(seconds: 1)),
+                ).animate().slideX(
+                    begin: 1.0,
+                    end: 0.0,
+                    curve: Curves.easeIn,
+                    duration: const Duration(seconds: 1)),
                 gapH4,
                 RichText(
                   text: TextSpan(
@@ -84,8 +105,22 @@ class LoginScreen extends ConsumerWidget {
                 Align(
                   alignment: Alignment.center,
                   child: PrimaryButton(
-                    onPressed: () {},
-                    isLoading: false,
+                    onPressed: () {
+                      if (controller.formKey.currentState!.validate()) {
+                        ref
+                            .read(loginViewModelProvider.notifier)
+                            .navigateToHome(
+                                ref
+                                    .read(loginViewModelProvider.notifier)
+                                    .emailController
+                                    .text,
+                                ref
+                                    .read(loginViewModelProvider.notifier)
+                                    .passwordController
+                                    .text);
+                      }
+                    },
+                    isLoading: state.isLoading,
                     backgroundColor: PrimaryColorsOne.primaryOne600,
                     foregroundColor: Colors.grey,
                     buttonHeight: 52.0,
@@ -95,8 +130,11 @@ class LoginScreen extends ConsumerWidget {
                             .copyWith(color: Colors.white)),
                     buttonBorderRadius: 8.0,
                   ),
-                ) .animate()
-                    .slideX(begin: -1.0, end: 0.0, curve: Curves.easeIn,duration: const Duration(seconds: 1)),
+                ).animate().slideX(
+                    begin: -1.0,
+                    end: 0.0,
+                    curve: Curves.easeIn,
+                    duration: const Duration(seconds: 1)),
                 gapH8,
                 Align(
                   alignment: Alignment.bottomCenter,

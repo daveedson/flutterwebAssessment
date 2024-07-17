@@ -22,7 +22,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         ),
             GoRoute(
           path: "/home",
-          name: AppRoute.signIn.name,
+          name: AppRoute.home.name,
           builder: (context, state) => const HomeView(),
         ),
     ],
