@@ -3,14 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:new_web_assesment/app_theme/app_colors.dart';
 import 'package:new_web_assesment/app_theme/app_text_styles.dart';
 import 'package:new_web_assesment/common_widgets/primary_button.dart';
-import 'package:new_web_assesment/common_widgets/primary_textfield.dart';
 import 'package:new_web_assesment/constants/app_sizes.dart';
-import 'package:new_web_assesment/features/home/presentation/widgets/pin_dialog.dart';
+import 'package:new_web_assesment/features/home/presentation/widgets/pin_code_fields.dart';
+import 'package:new_web_assesment/features/home/presentation/widgets/success_dialog.dart';
 
-class TransferMoneyDialog extends StatelessWidget {
-  final TextEditingController amountController = TextEditingController();
-  final TextEditingController accountController = TextEditingController();
-
+class PinDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -26,7 +23,7 @@ class TransferMoneyDialog extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Transfer Money', style: AppTextStyles.paragraph01Bold),
+                  Text('Enter your Pin', style: AppTextStyles.paragraph01Bold),
                   GestureDetector(
                     onTap: () {
                       context.pop();
@@ -35,43 +32,20 @@ class TransferMoneyDialog extends StatelessWidget {
                   ),
                 ],
               ),
-              gapH8,
-              Text(
-                'Enter transfer details',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey[600],
-                ),
-              ),
-              gapH16,
-              Text(
-                "Transfer Amount",
-                style: AppTextStyles.paragraph03Medium,
+              gapH12,
+              PrimaryPinCodeField(
+                length: 4,
+                controller: TextEditingController(),
+                size: 80.0,
+                onCompleted: (value) {},
               ),
               gapH8,
-              PrimaryTextField(
-                  hint: "Transfer Amount",
-                  controller: TextEditingController(),
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  onChanged: (value) {}),
-              gapH16,
-              Text(
-                "Transfer to:",
-                style: AppTextStyles.paragraph03Medium,
-              ),
-              gapH8,
-              PrimaryTextField(
-                  hint: "Transfer to (Accoount)",
-                  controller: TextEditingController(),
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  onChanged: (value) {}),
-              gapH16,
               PrimaryButton(
                 onPressed: () {
                   context.pop();
                   showDialog(
                     context: context,
-                    builder: (BuildContext context) => PinDialog(),
+                    builder: (BuildContext context) => SuccessDialog(),
                   );
                 },
                 isLoading: false,
