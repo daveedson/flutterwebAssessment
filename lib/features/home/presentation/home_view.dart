@@ -10,6 +10,7 @@ import 'package:new_web_assesment/features/home/presentation/widgets/custom_appb
 import 'package:new_web_assesment/features/home/presentation/widgets/dash_board_container.dart';
 import 'package:new_web_assesment/features/home/presentation/widgets/nav_sidebar.dart';
 import 'package:new_web_assesment/features/home/presentation/widgets/rounded_elevated_button.dart';
+import 'package:new_web_assesment/features/home/presentation/widgets/transfer_money_dialog.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
@@ -48,7 +49,13 @@ class HomeView extends ConsumerWidget {
                       SizedBox(
                         height: 50.0,
                         child: RoundedElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) =>
+                                    TransferMoneyDialog(),
+                              );
+                            },
                             backgroundColor: PrimaryColorsOne.primaryOne600,
                             child: Row(
                               children: [
