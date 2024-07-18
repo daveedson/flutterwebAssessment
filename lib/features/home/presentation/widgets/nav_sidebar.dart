@@ -27,7 +27,7 @@ class NavigationSidebar extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.attach_money, color: Colors.white),
-            title: Text('Loans',
+            title: Text('Accounts',
                 style: AppTextStyles.paragraph03Bold
                     .copyWith(color: Colors.white)),
             onTap: () {},

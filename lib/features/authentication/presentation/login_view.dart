@@ -32,14 +32,17 @@ class LoginScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     gapH64,
-                    Image.asset(
-                      "assets/images/kro.png",
-                      height: 70.0,
-                    ).animate().slideX(
-                  begin: -1.0,
-                  end: 0.0,
-                  curve: Curves.easeIn,
-                  duration: const Duration(seconds: 1)),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Image.asset(
+                        "assets/images/kro.png",
+                        height: 50.0,
+                      ).animate().slideX(
+                          begin: -1.0,
+                          end: 0.0,
+                          curve: Curves.easeIn,
+                          duration: const Duration(seconds: 1)),
+                    ),
                     gapH24,
                     Text(
                       "Lets login into your account",

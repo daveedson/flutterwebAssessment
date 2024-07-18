@@ -9,7 +9,7 @@ abstract class PrimaryColorsOne {
   static const primaryOne300 = Color(0xFF8FBDF5);
   static const primaryOne400 = Color(0xFF6AA7F1);
   static const primaryOne500 = Color(0xFF4491EE);
-  static const primaryOne600 = Color(0xFF1F7AEA);
+  static const primaryOne600 = Color(0xFF2B69DE);
   static const primaryOne700 = Color(0xFF1570E0);
   static const primaryOne800 = Color(0xFF1367CD);
   static const primaryOne900 = Color(0xFF115EBB);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_web_assesment/app_theme/app_colors.dart';
 import 'package:new_web_assesment/app_theme/app_text_styles.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -14,12 +15,12 @@ class CustomAppBar extends StatelessWidget {
                   AppTextStyles.paragraph03Bold.copyWith(color: Colors.black)),
           const Spacer(),
           IconButton(
-            icon: const Icon(Icons.notifications, color: Colors.blue),
+            icon: const Icon(Icons.notifications, color:PrimaryColorsOne.primaryOne600),
             onPressed: () {},
           ),
           const SizedBox(width: 16),
           const CircleAvatar(
-            backgroundColor: Colors.blue,
+            backgroundColor: PrimaryColorsOne.primaryOne600,
             child: Icon(Icons.person, color: Colors.white),
           ),
           const SizedBox(width: 8),

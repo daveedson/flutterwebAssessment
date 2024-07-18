@@ -35,7 +35,7 @@ class _DashBoardContainerState extends State<DashBoardContainer> {
       decoration: BoxDecoration(
         image: const DecorationImage(
           image: AssetImage("assets/images/Wallet.png",
-              package: "booster_design_system"),
+            ),
           fit: BoxFit.cover,
         ),
         borderRadius: BorderRadius.circular(20.0),
