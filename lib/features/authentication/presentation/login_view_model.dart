@@ -16,22 +16,19 @@ class LoginViewmodel extends StateNotifier<AsyncValue<void>> {
   final Ref ref;
  final GlobalKey<FormState> formKey =  GlobalKey<FormState>();
 
- 
+
   Future<bool> loginUser(String email, String password) async {
     state = const AsyncValue.loading();
     final value = await AsyncValue.guard(
         () => authRepository.signInWithEmailAndPassword(email, password));
-    //
     state = value;
-
     return value.hasError == false;
   }
 
   Future<void> navigateToHome(String email, String password) async {
     final success = await loginUser(email, password);
     if (success) {
-      print("success");
-         ref.read(goRouterProvider).pushNamed(AppRoute.home.name);
+         ref.read(goRouterProvider).pushReplacementNamed(AppRoute.home.name);
     }
   }
 }
