@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:new_web_assesment/app_theme/app_colors.dart';
+import 'package:new_web_assesment/app_theme/app_text_styles.dart';
 
 class NavigationSidebar extends StatelessWidget {
   @override
@@ -13,35 +14,36 @@ class NavigationSidebar extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.all(16.0),
-            child: const Text(
-              'KRO',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            child: Text('KRO',
+                style:
+                    AppTextStyles.heading06Bold.copyWith(color: Colors.white)),
           ),
           ListTile(
             leading: const Icon(Icons.dashboard, color: Colors.white),
-            title:
-                const Text('Dashboard', style: TextStyle(color: Colors.white)),
+            title: Text('Dashboard',
+                style: AppTextStyles.paragraph03Bold
+                    .copyWith(color: Colors.white)),
             onTap: () {},
           ),
           ListTile(
             leading: const Icon(Icons.attach_money, color: Colors.white),
-            title: const Text('Loans', style: TextStyle(color: Colors.white)),
+            title: Text('Loans',
+                style: AppTextStyles.paragraph03Bold
+                    .copyWith(color: Colors.white)),
             onTap: () {},
           ),
           ListTile(
             leading: const Icon(Icons.store, color: Colors.white),
-            title: const Text('Store', style: TextStyle(color: Colors.white)),
+            title: Text('Store',
+                style: AppTextStyles.paragraph03Bold
+                    .copyWith(color: Colors.white)),
             onTap: () {},
           ),
           ListTile(
             leading: const Icon(Icons.settings, color: Colors.white),
-            title:
-                Text('Settings', style: const TextStyle(color: Colors.white)),
+            title: Text('Settings',
+                style: AppTextStyles.paragraph03Bold
+                    .copyWith(color: Colors.white)),
             onTap: () {},
           ),
         ],

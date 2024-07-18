@@ -32,6 +32,15 @@ class LoginScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     gapH64,
+                    Image.asset(
+                      "assets/images/kro.png",
+                      height: 70.0,
+                    ).animate().slideX(
+                  begin: -1.0,
+                  end: 0.0,
+                  curve: Curves.easeIn,
+                  duration: const Duration(seconds: 1)),
+                    gapH24,
                     Text(
                       "Lets login into your account",
                       style: AppTextStyles.paragraph01Regular,
@@ -64,7 +73,7 @@ class LoginScreen extends ConsumerWidget {
                       obscure: true,
                       suffixIcon: IconButton(
                           onPressed: () {},
-                          icon: Icon(Icons.remove_red_eye,
+                          icon: const Icon(Icons.remove_red_eye,
                               color: Color(0xff616161))),
                       validator: normalPasswordValidator,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -143,10 +152,10 @@ class LoginScreen extends ConsumerWidget {
                   ],
                 ),
               ).animate().slideX(
-                        begin: 1.0,
-                        end: 0.0,
-                        curve: Curves.easeIn,
-                        duration: const Duration(seconds: 1)),
+                  begin: 1.0,
+                  end: 0.0,
+                  curve: Curves.easeIn,
+                  duration: const Duration(seconds: 1)),
             ),
           ),
         ),

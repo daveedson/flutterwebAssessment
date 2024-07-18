@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_web_assesment/app_theme/app_text_styles.dart';
 
 class CustomAppBar extends StatelessWidget {
   @override
@@ -8,14 +9,9 @@ class CustomAppBar extends StatelessWidget {
       elevation: 2,
       title: Row(
         children: [
-          const Text(
-            'Dashboard',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          Text('Dashboard',
+              style:
+                  AppTextStyles.paragraph03Bold.copyWith(color: Colors.black)),
           const Spacer(),
           IconButton(
             icon: const Icon(Icons.notifications, color: Colors.blue),
@@ -27,13 +23,9 @@ class CustomAppBar extends StatelessWidget {
             child: Icon(Icons.person, color: Colors.white),
           ),
           const SizedBox(width: 8),
-          const Text(
-            'Hi, Chiamaka Uche',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 16,
-            ),
-          ),
+          Text('Hi, Chiamaka Uche',
+              style:
+                  AppTextStyles.paragraph03Bold.copyWith(color: Colors.grey)),
           const Icon(Icons.arrow_drop_down, color: Colors.black),
         ],
       ),
