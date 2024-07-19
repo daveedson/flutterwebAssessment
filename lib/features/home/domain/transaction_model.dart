@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
+
 class Transaction {
   final String transactionDate;
   final String description;
@@ -27,22 +29,21 @@ class Transaction {
   @override
   bool operator ==(covariant Transaction other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.transactionDate == transactionDate &&
-      other.description == description &&
-      other.amount == amount &&
-      other.type == type &&
-      other.balance == balance;
+
+    return other.transactionDate == transactionDate &&
+        other.description == description &&
+        other.amount == amount &&
+        other.type == type &&
+        other.balance == balance;
   }
 
   @override
   int get hashCode {
     return transactionDate.hashCode ^
-      description.hashCode ^
-      amount.hashCode ^
-      type.hashCode ^
-      balance.hashCode;
+        description.hashCode ^
+        amount.hashCode ^
+        type.hashCode ^
+        balance.hashCode;
   }
 
   @override
@@ -50,3 +51,5 @@ class Transaction {
     return 'Transaction(transactionDate: $transactionDate, description: $description, amount: $amount, type: $type, balance: $balance)';
   }
 }
+
+
