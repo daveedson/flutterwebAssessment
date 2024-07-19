@@ -20,13 +20,22 @@ String? validateName(String? input) {
   return null;
 }
 
-String? validateNameWithLength(String? input, int length) {
-  if (input == null) return "required";
-  if (input.isEmpty) return "required";
-  if (input.length < length) return "not long enough";
-  return null;
+bool validateAccountNumber(String accountNumber) {
+  return accountNumber.length == 11 && RegExp(r'^[0-9]{11}$').hasMatch(accountNumber);
 }
 
+String? validateAmount(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'Amount cannot be empty';
+  }
+
+  final RegExp regex = RegExp(r'^\d+(\.\d{1,2})?$');
+  if (!regex.hasMatch(value)) {
+    return 'Enter a valid amount';
+  }
+
+  return null;
+}
 
 String? normalPasswordValidator(String? password) {
   if (password == null || password.isEmpty) return "required";
@@ -48,10 +57,3 @@ String? normalPasswordValidator(String? password) {
   return null;
 }
 
-String? confirmPasswordValidator(String? password, value) {
-  if (password == null || password.isEmpty) return "required";
-  if (password != value) {
-    return "Password does not match";
-  }
-  return null;
-}

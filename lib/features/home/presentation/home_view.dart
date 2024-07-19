@@ -6,16 +6,20 @@ import 'package:flutter_svg/svg.dart';
 import 'package:new_web_assesment/app_theme/app_colors.dart';
 import 'package:new_web_assesment/app_theme/app_text_styles.dart';
 import 'package:new_web_assesment/constants/app_sizes.dart';
+import 'package:new_web_assesment/features/home/presentation/home_view_model.dart';
 import 'package:new_web_assesment/features/home/presentation/widgets/custom_appbar.dart';
 import 'package:new_web_assesment/features/home/presentation/widgets/dash_board_container.dart';
 import 'package:new_web_assesment/features/home/presentation/widgets/nav_sidebar.dart';
+import 'package:new_web_assesment/features/home/presentation/widgets/recent_transactions.dart';
 import 'package:new_web_assesment/features/home/presentation/widgets/rounded_elevated_button.dart';
+import 'package:new_web_assesment/features/home/presentation/widgets/transfer_money_dialog.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final homeViewViewModel = ref.read(homeViewModeProvider.notifier);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60.0),
@@ -48,7 +52,13 @@ class HomeView extends ConsumerWidget {
                       SizedBox(
                         height: 50.0,
                         child: RoundedElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) =>
+                                    TransferMoneyDialog(),
+                              );
+                            },
                             backgroundColor: PrimaryColorsOne.primaryOne600,
                             child: Row(
                               children: [
@@ -75,50 +85,6 @@ class HomeView extends ConsumerWidget {
             ),
           ))
         ],
-      ),
-    );
-  }
-}
-
-class RecentTransactions extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Recent Transactions',
-          style: AppTextStyles.heading05SemiBold,
-        ),
-        ListView.builder(
-          shrinkWrap: true,
-          itemCount: 6, // Number of loans
-          itemBuilder: (context, index) {
-            return LoanItem();
-          },
-        ),
-      ],
-    );
-  }
-}
-
-class LoanItem extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: const Icon(
-        Icons.upcoming,
-        color: SuccessColors.success600,
-      ),
-      title: Text(
-        "Deposit from Adekunle",
-        style: AppTextStyles.paragraph01Bold,
-      ),
-      subtitle: Text(' Date: Feb 19, 2023 •',
-          style: AppTextStyles.paragraph03Regular),
-      trailing: Text(
-        '₦9,500',
-        style: AppTextStyles.paragraph02Regular,
       ),
     );
   }
