@@ -18,7 +18,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
      GoRoute(
           path: "/",
           name: 'AppRoute.signIn.name',
-          builder: (context, state) => const HomeView(),
+          builder: (context, state) => const LoginScreen(),
         ),
             GoRoute(
           path: "/home",
